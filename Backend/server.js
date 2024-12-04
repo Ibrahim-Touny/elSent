@@ -1,3 +1,6 @@
+//to start open terminal -> cd backend -> npm start
+
+
 const dotenv = require("dotenv").config(); //Loads .env variables to process.env
 const express = require("express"); // A web framework for creating APIs and web applications.
 const mongoose = require("mongoose"); //library for interacting with MongoDB

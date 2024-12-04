@@ -8,13 +8,13 @@ import { toast } from "react-toastify";
 import { register, RESET } from "../redux/features/authSlice";
 import { Loader } from "../components/common/Loader";
 
-
 const initialState={
   name:"",
   email:"",
   password:"",
   confirmPassword:"",
 }
+
 export const Register = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();

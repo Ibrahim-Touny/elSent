@@ -1,8 +1,42 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../components/common/Design";
 import { commonClassNameOfInput } from "../components/common/Design";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { toast } from "react-toastify";
+import { login } from "../redux/features/authSlice";
+import { Loader } from "../components/common/Loader";
 
 export const Login = () => {
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+    const [formData,setFormData]=useState(initialState);
+
+    const {email,password}=formData;
+    const {isLoggedIn, isError} =useSelector(state=> state.auth);
+
+    const handleInputChange=e=>{
+      const {name,value}=e.target;
+      setFormData({...formData,[name]:value});
+    }
+
+    const handleLogin = (e)=> {
+      e.preventDefault();
+
+      if(!email || !password) {
+        return toast.error("All fields are required");
+      }
+
+      dispatch(login({email, password}));
+    };
+
+    useEffect(() => {
+      if (isLoggedIn) {
+        navigate("/dashboard"); // Navigate on success
+      }
+      
+    }, [isLoggedIn, isError, navigate]);
   return (
     <>
       <section className="register pt-16 relative">
@@ -37,7 +71,7 @@ export const Login = () => {
             </div>
           </Container>
         </div>
-        <form className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl">
+        <form onSubmit={handleLogin} className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl">
           <div className="text-center">
             <Title level={5}>New Member</Title>
             <p className="mt-2 text-lg">
@@ -47,11 +81,11 @@ export const Login = () => {
 
           <div className="py-5 mt-8">
             <Caption className="mb-2">Enter Your Email *</Caption>
-            <input type="email" name="email" className={commonClassNameOfInput} placeholder="Enter Your Email" required />
+            <input type="email" name="email" value={email} onChange={handleInputChange} className={commonClassNameOfInput} placeholder="Enter Your Email" required />
           </div>
           <div>
             <Caption className="mb-2">Password *</Caption>
-            <input type="password" name="password" className={commonClassNameOfInput} placeholder="Enter Your Password" required />
+            <input type="password" name="password"  value={password} onChange={handleInputChange}className={commonClassNameOfInput} placeholder="Enter Your Password" required />
           </div>
           <div className="flex items-center gap-2 py-4">
             <input type="checkbox" />
