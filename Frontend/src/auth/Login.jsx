@@ -8,6 +8,11 @@ import { toast } from "react-toastify";
 import { login } from "../redux/features/authSlice";
 import { Loader } from "../components/common/Loader";
 
+const initialState={
+  email:"",
+  password:"",
+}
+
 export const Login = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
@@ -33,7 +38,7 @@ export const Login = () => {
 
     useEffect(() => {
       if (isLoggedIn) {
-        navigate("/dashboard"); // Navigate on success
+        navigate("/dashboard"); // Navigate on success            
       }
       
     }, [isLoggedIn, isError, navigate]);
