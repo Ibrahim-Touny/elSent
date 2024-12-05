@@ -6,13 +6,16 @@ import { MdDashboard, MdOutlineCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { Title } from "../components/common/Design";
+import { DashboardLayout } from "../components/common/DashboardLayout";
 
 export const Dashboard = () => {
   const role = "admin";
   return (
     <>
+    <DashboardLayout>
       <section>
-        <div className="shadow-s1 p-8 rounded-lg  mb-12">
+        <div className="shadow-s1 p-8 rounded-lg  mb-12 mt-16">
+
           <Title level={5} className=" font-normal">
             My Activity
           </Title>
@@ -61,6 +64,7 @@ export const Dashboard = () => {
           </div>
         </div>
       </section>
+      </DashboardLayout>
     </>
   );
 };

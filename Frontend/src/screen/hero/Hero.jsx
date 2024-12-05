@@ -1,7 +1,11 @@
 import { Container, Title ,Body, PrimaryButton,Caption } from "../../components/common/Design";
 import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlinePropertySafety } from "react-icons/ai";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
+export const User1 = "https://icon-icons.com/icon/female-woman-user-people-avatar/85204";
+export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
+export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
+export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";;
 export const Hero = () => {
   return (
     <>
