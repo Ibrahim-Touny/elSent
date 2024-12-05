@@ -9,15 +9,27 @@ import { CgProductHunt } from "react-icons/cg";
 import { TbCurrencyDollar } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
 import { FaPlusCircle } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { User1 } from "../../screen/hero/Hero";
+import { useDispatch } from "react-redux";
+import { logOut, RESET } from "../../redux/features/authSlice";
 
 export const Sidebar = () => {
   const location = useLocation();
-
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
   const role = "admin";
   const className = "flex items-center gap-3 mb-2 p-4 rounded-full";
-
+  
+  const logoutUser = async () => {
+    try {
+        dispatch(RESET()); // Optional, only if RESET is valid
+        await dispatch(logOut()).unwrap(); // `unwrap` will throw an error if the thunk is rejected
+        navigate("/"); // Redirect after successful logout
+    } catch (error) {
+        console.error("Logout failed:", error); // Log the error
+    }
+};
   return (
     <>
       <section className="sidebar flex flex-col justify-between h-full">
@@ -106,7 +118,7 @@ export const Sidebar = () => {
             <span>Personal Profile</span>
           </CustomNavLink>
 
-          <button className="flex items-center w-full gap-3 mt-4 bg-red-500 mb-3 hover:text-white p-4 rounded-full text-white">
+          <button onClick={logoutUser} className="flex items-center w-full gap-3 mt-4 bg-red-500 mb-3 hover:text-primary p-4 rounded-full text-primary">
             <span>
               <IoIosLogOut size={22} />
             </span>
