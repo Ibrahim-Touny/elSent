@@ -19,10 +19,16 @@ const logOut = async () => {
     return response.data;
 };
 
+const getLogInStatus = async () => {
+    const response = await axios.get(AUTH_URL+"loggedin");
+    return response.data;
+};
+
 const authService = {
     register,
     login,
     logOut,
+    getLogInStatus,
 }
 
 export default authService;
