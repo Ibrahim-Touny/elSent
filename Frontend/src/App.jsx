@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Layout,ProductsDetails, Register,Login } from "./routes/index.js";
+import { Home, Layout,ProductsDetails, Register,Login, Dashboard } from "./routes/index.js";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 function App() {
@@ -37,6 +37,14 @@ function App() {
             element={
               <Layout>
                 <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <Dashboard />
               </Layout>
             }
           />

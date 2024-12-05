@@ -1,3 +1,5 @@
+export { Dashboard } from "../screen/dashboard";
+
 export { Login } from "../auth/Login";
 
 export { Register } from "../auth/Register";
@@ -23,5 +25,6 @@ export { Header } from "../components/common/Header";
 export { Footer } from "../components/common/Footer";
 
 export { Home } from "../pages/home/Home";
+
 
 

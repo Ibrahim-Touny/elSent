@@ -51,14 +51,12 @@ export const Register = () => {
     };
 
     useEffect(() => {
-      if (isSuccess && isLoggedIn) {
-        navigate("/login"); // Navigate on success
-        dispatch(RESET()); // Reset state AFTER navigating
+      if (isLoggedIn) {
+        navigate("/authorization"); // Navigate on success
       }
     
       if (isError) {
         toast.error(message || "Registration failed"); // Show error toast
-        dispatch(RESET()); // Reset state AFTER showing error
       }
     }, [dispatch, isLoggedIn, isSuccess, isError, message, navigate]);
     
