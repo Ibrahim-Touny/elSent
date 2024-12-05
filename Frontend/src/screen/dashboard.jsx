@@ -7,8 +7,10 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { Title } from "../components/common/Design";
 import { DashboardLayout } from "../components/common/DashboardLayout";
+import { UseRedirectLoggedOutUser } from "../hooks/userRedirectLoggedOutUser";
 
 export const Dashboard = () => {
+  UseRedirectLoggedOutUser("/login");
   const role = "admin";
   return (
     <>
