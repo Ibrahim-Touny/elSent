@@ -29,7 +29,7 @@ const getUserProfile = async () => {
     return response.data;
 };
 
-const getAllUsers = async () => {
+const getAllUser = async () => {
     const response = await axios.get(AUTH_URL + "users");    
     return response.data;
 };
@@ -40,7 +40,7 @@ const authService = {
     logOut,
     getLogInStatus,
     getUserProfile,
-    getAllUsers,
+    getAllUser,
 }
 
 export default authService;

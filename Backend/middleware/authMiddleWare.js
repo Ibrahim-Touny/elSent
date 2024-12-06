@@ -24,9 +24,9 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 });
 
 const isAdmin = (req, res, next) => {
-  onsole.log('isAdmin middleware executed');
+  console.log('isAdmin middleware executed');
   console.log('req.user:', req.user);
-  console.log('req.user.role:', req.user.role);
+  
   if (req.user && req.user.role === "admin") {
     next();
   } else {
@@ -34,5 +34,4 @@ const isAdmin = (req, res, next) => {
     throw new Error("Access denied. You are not an admin.");
   }
 };
-
 module.exports = { protect, isAdmin };

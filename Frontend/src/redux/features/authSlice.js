@@ -60,11 +60,12 @@ export const getUserProfile = createAsyncThunk("auth/profile", async (_, thunkAP
     }
 });
 
-export const getAllUsers = createAsyncThunk("auth/getallusers", async (_, thunkAPI) => {
+export const getAllUser = createAsyncThunk("auth/users", async (_, thunkAPI) => {
     try {
-        await authService.getAllUsers();
+        const response = await authService.getAllUser();
+        return response;  // Return fetched users
     } catch (error) {
-        const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+        const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString() || error;
         return thunkAPI.rejectWithValue(errorMessage);
     }
 });
@@ -166,17 +167,17 @@ const authSlice = createSlice({
             localStorage.removeItem("user");
             state.isLoggedIn = true;
         })
-        .addCase(getAllUsers.pending, (state) => {
+        .addCase(getAllUser.pending, (state) => {
             state.isLoading = true;
         })
-        .addCase(getAllUsers.fulfilled, (state, action) => {
+        .addCase(getAllUser.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.isLoggedIn = true;
             state.users = action.payload;
             state.totalUsers = action.payload.length;
             })
-        .addCase(getAllUsers.rejected, (state, action) => {
+        .addCase(getAllUser.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
