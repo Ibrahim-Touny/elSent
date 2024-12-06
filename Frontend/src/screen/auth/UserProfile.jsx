@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/features/authSlice";
 
 export const UserProfile = () => {
-  UseRedirectLoggedOutUser("/login"); //user hena lama beyhsalo print beybaa true or false bs howa aando beybaa array         
-  //UseRedirect deh maarafsh malha
+  UseRedirectLoggedOutUser("/login"); 
 
   const {user} = useSelector((state) => state.auth); 
   const dispatch = useDispatch();

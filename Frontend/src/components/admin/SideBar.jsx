@@ -18,7 +18,7 @@ import { useEffect } from "react";
 import { UseUserProfile } from "../../hooks/UseUserProfile";
 
 export const Sidebar = () => {
-  //UseRedirectLoggedOutUser("/login");   //nafs elmoshkelaaa
+  UseRedirectLoggedOutUser("/login");
 
   const location = useLocation();
   const navigate = useNavigate();
