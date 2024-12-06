@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { CiMedal } from "react-icons/ci";
 import { GiBarbedStar } from "react-icons/gi";
-import { BsCashCoin } from "react-icons/bs";
 import { MdDashboard, MdOutlineCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
@@ -33,13 +31,6 @@ export const Dashboard = () => {
           <hr className="my-5" />
 
           <div className="grid grid-cols-3 gap-8 mt-8">
-            <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
-              <BsCashCoin size={80} className="text-green" />
-              <div>
-                <Title level={1}>500 </Title>
-                <Title>Balance</Title>
-              </div>
-            </div>
             {/* <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
               <CiMedal size={80} className="text-green" />
               <div>
@@ -47,13 +38,13 @@ export const Dashboard = () => {
                 <Title>Items Won</Title>
               </div>
             </div> */}
-            {/* <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
+            { <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
               <GiBarbedStar size={80} className="text-green" />
               <div>
                 <Title level={1}>100</Title>
-                <Title>Your Products </Title>
+                <Title>Live Products</Title>
               </div>
-            </div> */}
+            </div> }
             {role === "admin" && (
               <>
                 <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">

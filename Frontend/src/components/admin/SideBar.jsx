@@ -90,12 +90,6 @@ export const Sidebar = () => {
               </span>
               <span>Categories</span>
             </CustomNavLink>
-            <CustomNavLink href="/admin/income" isActive={location.pathname === "/admin/income"} className={className}>
-              <span>
-                <TbCurrencyDollar size={22} />
-              </span>
-              <span>Income</span>
-            </CustomNavLink>
           </>
         )}
 

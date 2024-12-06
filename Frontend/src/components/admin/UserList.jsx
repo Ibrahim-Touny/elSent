@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { Title, ProfileCard } from "../../routes";
-import { TiEyeOutline } from "react-icons/ti";
 import { User2 } from "../../screen/hero/Hero";
 import { UseUserProfile } from "../../hooks/useUserProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/features/authSlice";
 import { UseRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useEffect } from "react";
+import { TiEyeOutline } from "react-icons/ti";
+
 
 export const UserList = () => {
 
@@ -75,9 +76,9 @@ export const UserList = () => {
               </td>
               <td className="px-6 py-4">{user?.createdAt}</td>
               <td className="py-4 flex justify-end px-8">
-                <NavLink to="#" type="button" className="font-medium text-indigo-500">
-                  <TiEyeOutline size={25} />
-                </NavLink>
+              <NavLink to="#" type="button" className="font-medium text-indigo-500">
+                <TiEyeOutline size={25} style={{ color: "indigo" }} />
+              </NavLink>
               </td>
             </tr>
             ))}
