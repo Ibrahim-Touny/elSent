@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { BACKEND_URL } from "../../../utils/url";
+import { BACKEND_URL } from "../../utils/url";
 
 export const AUTH_URL = `${BACKEND_URL}/users/`;
 
@@ -16,11 +16,16 @@ const login = async (userData) => {
 
 const logOut = async () => {
     const response = await axios.get(AUTH_URL+"logout");
-    return response.data;
+    return response.data.message;
 };
 
 const getLogInStatus = async () => {
     const response = await axios.get(AUTH_URL+"loggedin");
+    return response.data;
+};
+
+const getUserProfile = async () => {
+    const response = await axios.get(AUTH_URL + "getuser");    
     return response.data;
 };
 
@@ -29,6 +34,7 @@ const authService = {
     login,
     logOut,
     getLogInStatus,
+    getUserProfile,
 }
 
 export default authService;

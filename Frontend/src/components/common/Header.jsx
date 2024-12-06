@@ -1,9 +1,11 @@
-import { Container,CustomNavLinkList } from "./Design";
-import { IoSearchOutline } from "react-icons/io5";
-import {menulists} from "../../assets/data";
 import { useRef, useState,useEffect } from "react";
 import {useLocation} from "react-router-dom";
+
+import { Container,CustomNavLinkList, ProfileCard } from "./Design";
+import { IoSearchOutline } from "react-icons/io5";
+import {menulists} from "../../assets/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLinks";
 
 export const Header = () => {
     const [isOpen,setIsOpen]=useState(false);
@@ -65,11 +67,15 @@ export const Header = () => {
                     <div className="flex items-center gap-8 icons">
                         <div className="hidden lg:flex lg:items-center lg:gap-8 text-white">
                             <IoSearchOutline size={23}/>
+                            <ShowOnLogout>
                             <CustomNavLinkList href="/login" className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}>Login</CustomNavLinkList>
                             <CustomNavLinkList href="/register" className={`${!isHomePage || isScrolled ? "bg-primary text-white" : "bg-white text-primary"}  px-8 py-2 rounded-full shadow-md`}>Sign up </CustomNavLinkList>
+                            </ShowOnLogout>
+                            <ShowOnLogin>
+                            <CustomNavLinkList href="/dashboard"><ProfileCard><div style={{width: '40px', height: '40px', backgroundColor: '#007bff', borderRadius: '50%'}} /></ProfileCard></CustomNavLinkList> 
+                            </ShowOnLogin>
                         </div>
-                    
-
+                        
                     <div className={`icon flex items-center justify-center gap-6 ${isScrolled || !isHomePage ? "text-primary" : "text-white"}`}>
                 <button onClick={toggleMenu} className="lg:hidden w-10 h-10 flex justify-center items-center bg-black text-white focus:outline-none">
                   {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}

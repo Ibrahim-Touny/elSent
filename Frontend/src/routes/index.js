@@ -1,8 +1,9 @@
+
 export { Dashboard } from "../screen/dashboard";
 
-export { Login } from "../auth/Login";
+export { Login } from "../screen/auth/Login";
 
-export { Register } from "../auth/Register";
+export { Register } from "../screen/auth/Register";
 
 export { ProductsDetails } from "../pages/product/ProductsDetails";
 
@@ -26,5 +27,14 @@ export { Footer } from "../components/common/Footer";
 
 export { Home } from "../pages/home/Home";
 
+export { DashboardLayout } from "../components/common/layout/DashboardLayout";
 
+export { PrivateRoute } from "./PrivateRoute";
 
+export { UserProfile } from "../screen/auth/UserProfile";
+
+export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButton, ProfileCard, Heading, CustomNavLinkList } from "../components/common/Design";
+
+export { AddProduct } from "../screen/product/AddProject";
+
+export { CategoryDropDown } from "../components/common/CategoryDropDown";

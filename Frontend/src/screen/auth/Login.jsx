@@ -1,12 +1,12 @@
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../components/common/Design";
-import { commonClassNameOfInput } from "../components/common/Design";
+import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../../components/common/Design";
+import { commonClassNameOfInput } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { toast } from "react-toastify";
-import { login } from "../redux/features/authSlice";
-import { Loader } from "../components/common/Loader";
+import { login } from "../../redux/features/authSlice";
+import { Loader } from "../../components/common/Loader";
 
 const initialState={
   email:"",

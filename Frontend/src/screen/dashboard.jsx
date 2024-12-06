@@ -6,11 +6,11 @@ import { MdDashboard, MdOutlineCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { Title } from "../components/common/Design";
-import { DashboardLayout } from "../components/common/DashboardLayout";
-import { UseRedirectLoggedOutUser } from "../hooks/userRedirectLoggedOutUser";
+import { DashboardLayout } from "../components/common/layout/DashboardLayout";
+import { UseRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
 
 export const Dashboard = () => {
-  UseRedirectLoggedOutUser("/login");
+  //UseRedirectLoggedOutUser("/"); //elmafrod yekon shaghal bs mesh aaref leh bayez 
   const role = "admin";
   return (
     <>

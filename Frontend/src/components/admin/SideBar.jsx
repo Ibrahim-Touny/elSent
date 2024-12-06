@@ -11,33 +11,48 @@ import { FiUser } from "react-icons/fi";
 import { FaPlusCircle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { User1 } from "../../screen/hero/Hero";
-import { useDispatch } from "react-redux";
-import { logOut, RESET } from "../../redux/features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, logOut, RESET } from "../../redux/features/authSlice";
+import { UseRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
+import { useEffect } from "react";
+import { UseUserProfile } from "../../hooks/UseUserProfile";
 
 export const Sidebar = () => {
+  //UseRedirectLoggedOutUser("/login");   //nafs elmoshkelaaa
+
   const location = useLocation();
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const role = "admin";
-  const className = "flex items-center gap-3 mb-2 p-4 rounded-full";
-  
-  const logoutUser = async () => {
-    try {
-        dispatch(RESET()); // Optional, only if RESET is valid
-        await dispatch(logOut()).unwrap(); // `unwrap` will throw an error if the thunk is rejected
-        navigate("/"); // Redirect after successful logout
-    } catch (error) {
-        console.error("Logout failed:", error); // Log the error
+  const navigate = useNavigate();
+  const disptact = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { role, isLoggedIn} = UseUserProfile();
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    if (isLoggedIn) {
+    dispatch(getUserProfile());
     }
-};
+  }, [dispatch, isLoggedIn]);
+
+  if (!isLoggedIn) return <p> You need to log to access this page </p>
+  
+  const logoutUser = async () => {    
+    disptact(RESET());
+    await disptact(logOut());
+    navigate("/");
+    }
+
+
+const className = "flex items-center gap-3 mb-2 p-4 rounded-full";
+
   return (
     <>
       <section className="sidebar flex flex-col justify-between h-full">
         <div className="profile flex items-center text-center justify-center gap-8 flex-col mb-8">
-          <img src={User1} alt="" className="w-32 h-32 rounded-full object-cover" />
+          <img src={user} alt="" className="w-32 h-32 rounded-full object-cover" />
           <div>
-            <Title className="capitalize">User 1</Title>
-            <Caption>example@gmail.com</Caption>
+            <Title className="capitalize">{user?.name || "Default Name"}</Title>
+            <Caption>{user?.email || "Default Email"}</Caption>
           </div>
         </div>
 

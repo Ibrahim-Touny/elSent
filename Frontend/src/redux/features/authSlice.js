@@ -42,10 +42,18 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     }
 });
 
-export const getLogInStatus = createAsyncThunk("auth/getLogInStatus", async (_, thunkAPI) => {
+export const getLogInStatus = createAsyncThunk("auth/status", async (_, thunkAPI) => {
     try {
         return await authService.getLogInStatus();
-        localStorage.removeItem("user");
+    } catch (error) {
+        const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+        return thunkAPI.rejectWithValue(errorMessage);
+    }
+});
+
+export const getUserProfile = createAsyncThunk("auth/profile", async (_, thunkAPI) => {
+    try {
+        return await authService.getUserProfile();
     } catch (error) {
         const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
         return thunkAPI.rejectWithValue(errorMessage);
@@ -58,7 +66,7 @@ const authSlice = createSlice({
     reducers: {
         RESET(state) {
             state.isError = false;
-            state.isSuccess = false;
+            state.isSuccess = false;    
             state.isLoading = false;
             state.message = "";
         },
@@ -98,6 +106,7 @@ const authSlice = createSlice({
         .addCase(login.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
+            state.isSuccess = false;
             state.message = action.payload; 
             state.user = null;
             toast.error(action.payload);
@@ -108,7 +117,7 @@ const authSlice = createSlice({
         .addCase(logOut.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.isLoggedIn = true; 
+            state.isLoggedIn = false; 
             state.user = null;
             toast.success(action.payload);
         })
@@ -130,6 +139,23 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
+        })
+        .addCase(getUserProfile.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(getUserProfile.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isLoggedIn = true;
+            state.user = action.payload;
+            localStorage.setItem("user", JSON.stringify(action.payload)); 
+        })
+        .addCase(getUserProfile.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+            localStorage.removeItem("user");
+            state.isLoggedIn = true;
         })
     },
 });

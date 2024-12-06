@@ -1,9 +1,24 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Layout,ProductsDetails, Register,Login, Dashboard } from "./routes/index.js";
+import { Home, Layout,ProductsDetails, Register,Login, Dashboard, UserProfile, PrivateRoute, DashboardLayout, AddProduct } from "./routes/index.js";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from 'react-redux';
+import { getLogInStatus } from './redux/features/authSlice.js';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
+
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLogInStatus());
+  }, [dispatch]);
+
+
+  
   return (
     <BrowserRouter>
     <ToastContainer/>
@@ -22,6 +37,18 @@ function App() {
               <Layout>
                 <ProductsDetails />
               </Layout>
+            }
+          />
+          <Route
+            path="/add"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <AddProduct />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
             }
           />
         <Route
@@ -46,6 +73,18 @@ function App() {
               <Layout>
                 <Dashboard />
               </Layout>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <UserProfile />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
             }
           />
       </Routes>
