@@ -10,7 +10,7 @@ export const ShowOnLogin = ({children}) => {
         return <>{children}</>
     }
     return null;
-}
+};
 
 export const ShowOnLogout = ({children}) => {
     const isLoggedIn = useSelector(selectIsLoggedIn);

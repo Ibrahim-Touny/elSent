@@ -28,13 +28,11 @@ axios.defaults.withCredentials = true;
 function App() {
 
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch(getLogInStatus());
   }, [dispatch]);
 
-
-  
   return (
     <BrowserRouter>
     <ToastContainer/>

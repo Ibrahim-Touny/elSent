@@ -1,3 +1,5 @@
+export { Loader } from "../components/common/Loader";
+
 export { Dashboard } from "../screen/dashboard";
 
 export { Login } from "../screen/auth/Login";
@@ -45,4 +47,6 @@ export {Categorylist} from "../components/admin/category//Categorylist";
 export {CreateCategory} from "../components/admin/category/CreateCategory";
 
 export {UpdateCategory} from "../components/admin/category/UpdateCategory";
+
+
 

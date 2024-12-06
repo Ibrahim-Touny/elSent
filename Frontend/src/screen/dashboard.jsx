@@ -8,7 +8,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { Title } from "../components/common/Design";
 import { DashboardLayout } from "../components/common/layout/DashboardLayout";
 import { UseRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
-import { UseUserProfile } from "../hooks/UseUserProfile";
+import { UseUserProfile } from "../hooks/useUserProfile";
 import { getUserProfile } from "../redux/features/authSlice";
 import { useDispatch } from "react-redux";
 

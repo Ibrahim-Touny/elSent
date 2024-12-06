@@ -11,6 +11,10 @@ const userSchema = mongoose.Schema({ //Defines a schema for a user in MongoDB.
         type: String,
         require: [true, "Please add an Email."]
     },
+    photo:{
+        type:String,
+        default:"https://cdn-icons-png.flaticon.com/128/236/236832.png",
+    },
     password: {
         type: String,
         require: [true, "Please add a Password."],

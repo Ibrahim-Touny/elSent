@@ -4,11 +4,11 @@ import { Container } from "../Design";
 import { getUserProfile } from "../../../redux/features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { UseUserProfile } from "../../../hooks/UseUserProfile";
+import { UseUserProfile } from "../../../hooks/useUserProfile";
 
 
 export const DashboardLayout = ({ children }) => {
-  const navigate = useNavigate();
+  const location = useNavigate();
   const dispatch = useDispatch();
   const { role, isLoggedIn} = UseUserProfile();
   

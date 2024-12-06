@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Title, ProfileCard } from "../../routes";
 import { TiEyeOutline } from "react-icons/ti";
 import { User2 } from "../../screen/hero/Hero";
-import { UseUserProfile } from "../../hooks/UseUserProfile";
+import { UseUserProfile } from "../../hooks/useUserProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/features/authSlice";
 import { UseRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";

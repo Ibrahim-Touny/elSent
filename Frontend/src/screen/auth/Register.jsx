@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { toast } from "react-toastify";
 import { register, RESET } from "../../redux/features/authSlice";
-import { Loader } from "../../components/common/Loader";
+import { Loader } from "../../routes";
+
 
 const initialState={
   name:"",
