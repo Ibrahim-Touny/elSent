@@ -1,5 +1,5 @@
-import { PrimaryButton } from "../routes";
-import { Caption, commonClassNameOfInput, Title } from "../components/common/Design";
+import { PrimaryButton } from "../../../routes";
+import { Caption, commonClassNameOfInput, Title } from "../../common/Design";
 
 export const UpdateCategory = () => {
   return (

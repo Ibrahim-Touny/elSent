@@ -1,8 +1,9 @@
-import { Caption, PrimaryButton, Title } from "../routes";
-import { commonClassNameOfInput } from "../components/common/Design";
-import { UseRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
+import { Caption, PrimaryButton, Title } from "../../../routes";
+import { commonClassNameOfInput } from "../../common/Design";
+import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUser";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const CreateCategory = () => {
 
@@ -12,7 +13,8 @@ export const CreateCategory = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
-  const [console, setError] = useState("");
+  //eslint-disable-next-line
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     setTitle(e.target.value);
@@ -23,7 +25,7 @@ export const CreateCategory = () => {
 
     try {
       setError("");  
-      await dispatch(createCategory(title));
+      await dispatch(createCategory(title)).unwrap();
       navigate("/dashboard");
     } catch (error) {
       setError(error.message)
@@ -36,10 +38,10 @@ export const CreateCategory = () => {
         <Title level={5} className=" font-normal mb-5">
           Create Category
         </Title>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="w-full my-8">
             <Caption className="mb-2">Title *</Caption>
-            <input type="text" className={`${commonClassNameOfInput}`} placeholder="Title" required />
+            <input value={title} onChange={handleInputChange} type="text" className={`${commonClassNameOfInput}`} placeholder="Title" required />
           </div>
 
           <PrimaryButton type="submit" className="rounded-none my-5">

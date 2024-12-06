@@ -1,3 +1,4 @@
+export { CreateCategory } from "../components/admin/category/CreateCategory";
 
 export { Dashboard } from "../screen/dashboard";
 
@@ -41,8 +42,3 @@ export { CategoryDropDown } from "../components/common/CategoryDropDown";
 
 export { UserList } from "../components/admin/UserList";
 
-export {Categorylist} from "../category/Categorylist";
-
-export {CreateCategory} from "../category/CreateCategory";
-
-export {UpdateCategory} from "../category/UpdateCategory";
