@@ -13,7 +13,7 @@ import { getUserProfile } from "../redux/features/authSlice";
 import { useDispatch } from "react-redux";
 
 export const Dashboard = () => {
-  UseRedirectLoggedOutUser("/login"); //elmafrod yekon shaghal bs mesh aaref leh bayez 
+  UseRedirectLoggedOutUser("/login"); 
   const { role } = UseUserProfile();
   const dispatch = useDispatch();
   
