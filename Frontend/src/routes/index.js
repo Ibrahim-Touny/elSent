@@ -1,5 +1,3 @@
-export { CreateCategory } from "../components/admin/category/CreateCategory";
-
 export { Dashboard } from "../screen/dashboard";
 
 export { Login } from "../screen/auth/Login";
@@ -41,4 +39,10 @@ export { AddProduct } from "../screen/product/AddProject";
 export { CategoryDropDown } from "../components/common/CategoryDropDown";
 
 export { UserList } from "../components/admin/UserList";
+
+export {Categorylist} from "../components/admin/category//Categorylist";
+
+export {CreateCategory} from "../components/admin/category/CreateCategory";
+
+export {UpdateCategory} from "../components/admin/category/UpdateCategory";
 

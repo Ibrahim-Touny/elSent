@@ -1,10 +1,10 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import { Title, PrimaryButton, ProfileCard } from "../routes";
+import { Title, PrimaryButton, ProfileCard } from "../../../routes";
 import { TiEyeOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { User2 } from "../screen/hero/Hero";
+import { User2 } from "../../../screen/hero/Hero";
 
 export const Categorylist = () => {
   return (
