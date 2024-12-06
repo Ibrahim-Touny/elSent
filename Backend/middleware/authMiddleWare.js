@@ -24,6 +24,9 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 });
 
 const isAdmin = (req, res, next) => {
+  onsole.log('isAdmin middleware executed');
+  console.log('req.user:', req.user);
+  console.log('req.user.role:', req.user.role);
   if (req.user && req.user.role === "admin") {
     next();
   } else {
@@ -32,14 +35,4 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-const isSeller = (req, res, next) => {
-
-  if (req.user && (req.user.role === "seller" || req.user.role === "admin")) {
-    next();
-  } else {
-    res.status(403);
-    throw new Error("Access denied. You are not a seller.");
-  }
-};
-
-module.exports = { protect, isAdmin, isSeller };
+module.exports = { protect, isAdmin };

@@ -64,7 +64,7 @@ const className = "flex items-center gap-3 mb-2 p-4 rounded-full";
             <span>Dashbaord</span>
           </CustomNavLink>
 
-          {(role === "seller" || role === "admin") && (
+          {(role === "admin") && (
             <>
               <CustomNavLink href="/product" isActive={location.pathname === "/product"} className={className}>
                 <span>

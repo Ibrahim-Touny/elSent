@@ -91,14 +91,7 @@ const placeBid = asyncHandler(async (req, res) => {
     product.soldTo = highestBid.user;
     product.soldPrice = finalPrice;
   
-    // Update seller's balance
-    const seller = await User.findById(product.user);
-    if (seller) {
-      seller.balance += finalPrice; // Add the remaining amount to the seller's balance
-      await seller.save();
-    } else {
-      return res.status(404).json({ error: "Seller not found" });
-    }
+    
   
     // Save product
     await product.save();

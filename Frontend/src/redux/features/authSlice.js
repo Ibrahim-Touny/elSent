@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 
 const initialState = {
     user: JSON.parse(localStorage.getItem("user")) || null,
+    users: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: "",
-    isLoggedIn: JSON.parse(localStorage.getItem("user")) ? true : false, // Track login status
 };
 
 export const register = createAsyncThunk("auth/register", async (userData, thunkAPI) => {
@@ -54,6 +54,15 @@ export const getLogInStatus = createAsyncThunk("auth/status", async (_, thunkAPI
 export const getUserProfile = createAsyncThunk("auth/profile", async (_, thunkAPI) => {
     try {
         return await authService.getUserProfile();
+    } catch (error) {
+        const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+        return thunkAPI.rejectWithValue(errorMessage);
+    }
+});
+
+export const getAllUsers = createAsyncThunk("auth/getallusers", async (_, thunkAPI) => {
+    try {
+        await authService.getAllUsers();
     } catch (error) {
         const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
         return thunkAPI.rejectWithValue(errorMessage);
@@ -155,6 +164,22 @@ const authSlice = createSlice({
             state.isError = true;
             state.message = action.payload;
             localStorage.removeItem("user");
+            state.isLoggedIn = true;
+        })
+        .addCase(getAllUsers.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(getAllUsers.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isLoggedIn = true;
+            state.users = action.payload;
+            state.totalUsers = action.payload.length;
+            })
+        .addCase(getAllUsers.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
             state.isLoggedIn = true;
         })
     },

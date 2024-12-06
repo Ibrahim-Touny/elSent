@@ -29,12 +29,18 @@ const getUserProfile = async () => {
     return response.data;
 };
 
+const getAllUsers = async () => {
+    const response = await axios.get(AUTH_URL + "users");    
+    return response.data;
+};
+
 const authService = {
     register,
     login,
     logOut,
     getLogInStatus,
     getUserProfile,
+    getAllUsers,
 }
 
 export default authService;

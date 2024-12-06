@@ -6,8 +6,13 @@ import { IoSearchOutline } from "react-icons/io5";
 import {menulists} from "../../assets/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLinks";
+import { UseUserProfile } from "../../hooks/UseUserProfile";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, selectIsLoggedIn } from "../../redux/features/authSlice";
 
 export const Header = () => {
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+
     const [isOpen,setIsOpen]=useState(false);
     const [isScrolled,setIsScrolled]=useState(false);
     const location=useLocation();
@@ -40,7 +45,15 @@ export const Header = () => {
 
       const isHomePage = location.pathname === "/";
 
-      const role = "buyer";
+      const { role } = UseUserProfile();
+      const dispatch = useDispatch();
+
+      useEffect(() => {
+        if(isLoggedIn){
+            dispatch (getUserProfile())
+        }
+      }, [dispatch, isLoggedIn])
+
     return (
         <>
             <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}` : `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>

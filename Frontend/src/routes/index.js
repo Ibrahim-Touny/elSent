@@ -38,3 +38,11 @@ export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButt
 export { AddProduct } from "../screen/product/AddProject";
 
 export { CategoryDropDown } from "../components/common/CategoryDropDown";
+
+export { UserList } from "../components/admin/UserList";
+
+export {Categorylist} from "../category/Categorylist";
+
+export {CreateCategory} from "../category/CreateCategory";
+
+export {UpdateCategory} from "../category/UpdateCategory";

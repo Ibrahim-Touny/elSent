@@ -6,20 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/features/authSlice";
 
 export const UserProfile = () => {
-  //UseRedirectLoggedOutUser("/login");         //UseRedirect deh maarafsh malha
+  UseRedirectLoggedOutUser("/login"); //user hena lama beyhsalo print beybaa true or false bs howa aando beybaa array         
+  //UseRedirect deh maarafsh malha
 
-  const {user} = useSelector((state) => state.auth); //user hena lama beyhsalo print beybaa true or false bs howa aando beybaa array
+  const {user} = useSelector((state) => state.auth); 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Dispatching getUserProfile...");
     dispatch(getUserProfile());
   }, [dispatch]);
-
-  console.log("===============");   //elmafrod yetshalo
-  console.log(user);
-  console.log("===============");
-
 
   return (
     <>

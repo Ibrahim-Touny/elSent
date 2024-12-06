@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({ //Defines a schema for a user in MongoDB.
     },
     role: {
         type: String,
-        enum: ["admin", "seller", "buyer"],
+        enum: ["admin", "buyer"],
         default:"buyer"
     }
     },

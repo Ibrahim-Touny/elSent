@@ -1,6 +1,22 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Layout,ProductsDetails, Register,Login, Dashboard, UserProfile, PrivateRoute, DashboardLayout, AddProduct } from "./routes/index.js";
+import { 
+  Home,
+  Layout,
+  ProductsDetails,
+  Register,
+  Login,
+  Dashboard,
+  UserProfile, 
+  PrivateRoute, 
+  DashboardLayout, 
+  AddProduct, 
+  UserList,
+  CreateCategory,
+  UpdateCategory,
+  Categorylist,
+ } from "./routes/index.js";
+
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from 'react-redux';
@@ -82,6 +98,54 @@ function App() {
                 <Layout>
                   <DashboardLayout>
                     <UserProfile />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
+            }
+          />        
+          <Route
+            path="/userlist"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <UserList />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/category"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <Categorylist />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/category/create"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <CreateCategory />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/category/update/:id"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <DashboardLayout>
+                    <UpdateCategory />
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>

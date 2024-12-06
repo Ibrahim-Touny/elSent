@@ -103,48 +103,6 @@ const logoutuser = asyncHandler (async (req, res) => {
     return res.status(200).json({message: "Successfully logged out!"});
 });
 
-const loginAsSeller = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-  
-    // Check if email and password are provided
-    if (!email || !password) {
-      res.status(400);
-      throw new Error("Please provide both email and password");
-    }
-  
-    // Find the user by email
-    const user = await User.findOne({ email });
-    if (!user) {
-      res.status(400);
-      throw new Error("User not found, please sign up");
-    }
-  
-    // Verify the password
-    const passwordIsCorrect = await bcrypt.compare(password, user.password);
-    if (!passwordIsCorrect) {
-      res.status(400);
-      throw new Error("Invalid email or password");
-    }
-  
-    // If password is correct, update the role to 'seller'
-    user.role = "seller";
-    await user.save();
-  
-    // Generate a token and set cookie
-    const token = generateToken(user._id);
-    res.cookie("token", token, {
-      path: "/",
-      httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400),
-      sameSite: "none",
-      secure: true,
-    });
-  
-    // Send the response with updated user info
-    const { _id, name, email: userEmail, photo, role } = user;
-    res.status(200).json({ _id, name, email: userEmail, role, token });
-  });
-
   const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id).select("-password");
   
@@ -167,6 +125,5 @@ module.exports = {
     loginUser,
     loginStatus,
     logoutuser,
-    loginAsSeller,
     getUser,
     getAllUser };
