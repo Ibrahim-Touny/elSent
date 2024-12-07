@@ -44,7 +44,7 @@ export { UserList } from "../components/admin/UserList";
 
 export {Categorylist} from "../components/admin/category//Categorylist";
 
-export {CreateCategory} from "../components/admin/category/CreateCategory";
+export {createCategory} from "../components/admin/category/CreateCategory";
 
 export {UpdateCategory} from "../components/admin/category/UpdateCategory";
 

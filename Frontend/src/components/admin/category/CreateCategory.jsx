@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export const CreateCategory = () => {
+export const createCategory = () => {
 
   UseRedirectLoggedOutUser("/login");
 
@@ -20,17 +20,16 @@ export const CreateCategory = () => {
     setTitle(e.target.value);
   };
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");  // Clear any previous error message
     try {
-      setError("");  
-      await dispatch(createCategory(title)).unwrap();
-      navigate("/dashboard");
+      await dispatch(createCategory(title)).unwrap();  // Attempt to dispatch the createCategory action
+      navigate("/category");  // Navigate to the category page on success
     } catch (error) {
-      setError(error.message)
+      setError(error.message);  // Set error message if the dispatch fails
     }
-  }
+  };
 
   return (
     <>

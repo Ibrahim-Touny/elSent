@@ -78,9 +78,9 @@ export const Login = () => {
         </div>
         <form onSubmit={handleLogin} className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl">
           <div className="text-center">
-            <Title level={5}>New Member</Title>
+            <Title level={5}>Login</Title>
             <p className="mt-2 text-lg">
-              Do you already have an account? <CustomNavLink href="/register">Signup Here</CustomNavLink>
+              Are you a new member? <CustomNavLink href="/register">Signup Here</CustomNavLink>
             </p>
           </div>
 
