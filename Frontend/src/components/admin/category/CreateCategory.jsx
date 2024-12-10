@@ -4,8 +4,9 @@ import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUse
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getallCategory } from "../../../redux/features/categorySlice";
 
-export const createCategory = () => {
+export const CreateCategory = () => {
 
   UseRedirectLoggedOutUser("/login");
 
@@ -22,9 +23,11 @@ export const createCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");  // Clear any previous error message
     try {
-      await dispatch(createCategory(title)).unwrap();  // Attempt to dispatch the createCategory action
+      setError("");  // Clear any previous error message
+
+      await dispatch(CreateCategory({title})).unwrap();  // Attempt to dispatch the createCategory action
+      await dispatch(getallCategory()).unwrap();
       navigate("/category");  // Navigate to the category page on success
     } catch (error) {
       setError(error.message);  // Set error message if the dispatch fails

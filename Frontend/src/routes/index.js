@@ -42,11 +42,9 @@ export { CategoryDropDown } from "../components/common/CategoryDropDown";
 
 export { UserList } from "../components/admin/UserList";
 
-export {Categorylist} from "../components/admin/category//Categorylist";
+export {Categorylist} from "../components/admin/category/Categorylist";
 
-export {createCategory} from "../components/admin/category/CreateCategory";
+export {CreateCategory} from "../components/admin/category/CreateCategory";
 
 export {UpdateCategory} from "../components/admin/category/UpdateCategory";
-
-
 

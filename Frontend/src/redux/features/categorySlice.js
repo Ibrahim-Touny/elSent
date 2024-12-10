@@ -11,9 +11,18 @@ const initialState = {
     message: "",
 };
 
-export const createCategory = createAsyncThunk("category/create", async (formData, thunkAPI) => {
+export const CreateCategory = createAsyncThunk("category/create", async (formData, thunkAPI) => {
     try {
-        return await categoryService.createCategory(formData);
+        return await categoryService.CreateCategory(formData);
+    } catch (error) {
+            const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+            return thunkAPI.rejectWithValue(errorMessage);
+    }
+});
+
+export const getallCategory = createAsyncThunk("category/getall", async (formData, thunkAPI) => {
+    try {
+        return await categoryService.getallCategory(formData);
     } catch (error) {
             const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
             return thunkAPI.rejectWithValue(errorMessage);
@@ -26,21 +35,36 @@ const categorySlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(createCategory.pending, (state) => {
+        .addCase(CreateCategory.pending, (state) => {
             state.isLoading = true;
         })
-        .addCase(createCategory.fulfilled, (state, action) => {
+        .addCase(CreateCategory.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
             toast.success("Category has been Created");
         })
-        .addCase(createCategory.rejected, (state, action) => {
+        .addCase(CreateCategory.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
             toast.error(action.payload);
-        });
+        })
+        .addCase(getallCategory.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(getallCategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.categorys = action.payload;
+        })
+        .addCase(getallCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        })
+        ;
     },
 });
 

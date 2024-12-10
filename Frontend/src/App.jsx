@@ -12,7 +12,7 @@ import {
   DashboardLayout, 
   AddProduct, 
   UserList,
-  createCategory,
+  CreateCategory,
   UpdateCategory,
   Categorylist,
  } from "./routes/index.js";
@@ -119,7 +119,7 @@ function App() {
               <PrivateRoute>
                 <Layout>
                   <DashboardLayout>
-                    <Categorylist />
+                    <Categorylist/>
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>
@@ -131,7 +131,7 @@ function App() {
               <PrivateRoute>
                 <Layout>
                   <DashboardLayout>
-                    <createCategory/>
+                    <CreateCategory/>
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>
