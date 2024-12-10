@@ -4,7 +4,7 @@ import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUse
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getallCategory } from "../../../redux/features/categorySlice";
+import { createCategory, getallCategory } from "../../../redux/features/categorySlice";
 
 export const CreateCategory = () => {
 
@@ -26,7 +26,7 @@ export const CreateCategory = () => {
     try {
       setError("");  // Clear any previous error message
 
-      await dispatch(CreateCategory({title})).unwrap();  // Attempt to dispatch the createCategory action
+      await dispatch(createCategory({title})).unwrap();  // Attempt to dispatch the createCategory action
       await dispatch(getallCategory()).unwrap();
       navigate("/category");  // Navigate to the category page on success
     } catch (error) {
