@@ -4,7 +4,7 @@ import { PrimaryButton } from "../../../routes";
 import { Caption, commonClassNameOfInput, Title } from "../../common/Design";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { createCategory, getallCategory, updateCategory } from "../../../redux/features/categorySlice";
+import {getallCategory, updateCategory } from "../../../redux/features/categorySlice";
 
 export const UpdateCategory = () => {
   UseRedirectLoggedOutUser("/login");

@@ -29,7 +29,7 @@ export const getallCategory = createAsyncThunk("category/getall", async (formDat
     }
 });
 
-export const updateCategory = createAsyncThunk("category/update", async (id, formData, thunkAPI) => {
+export const updateCategory = createAsyncThunk("category/update", async ({id, formData}, thunkAPI) => {
     try {
         return await categoryService.updateCategory(id, formData);
     } catch (error) {
