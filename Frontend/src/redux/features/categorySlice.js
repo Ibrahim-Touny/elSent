@@ -29,6 +29,26 @@ export const getallCategory = createAsyncThunk("category/getall", async (formDat
     }
 });
 
+export const updateCategory = createAsyncThunk("category/update", async (id, formData, thunkAPI) => {
+    try {
+        return await categoryService.updateCategory(id, formData);
+    } catch (error) {
+            const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+            return thunkAPI.rejectWithValue(errorMessage);
+    }
+});
+
+export const deleteCategory = createAsyncThunk("category/delete", async (id, thunkAPI) => {
+    try {
+        return await categoryService.deleteCategory(id);
+    } catch (error) {
+            const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
+            return thunkAPI.rejectWithValue(errorMessage);
+    }
+});
+
+
+
 const categorySlice = createSlice({
     name: "category",
     initialState,
@@ -63,6 +83,36 @@ const categorySlice = createSlice({
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;
+        })
+        .addCase(updateCategory.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(updateCategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            toast.success("Category has been Updated");
+        })
+        .addCase(updateCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+            toast.error(action.payload);
+        })
+        .addCase(deleteCategory.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(deleteCategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            toast.success("Category has been deleted successfully");
+        })
+        .addCase(deleteCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+            toast.error(action.payload);
         })
         ;
     },

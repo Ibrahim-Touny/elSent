@@ -7,7 +7,8 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUser";
 import { useEffect } from "react";
-import { getallCategory } from "../../../redux/features/categorySlice";
+import { deleteCategory, getallCategory } from "../../../redux/features/categorySlice";
+import { toast } from "react-toastify";
 
 export const Categorylist = () => {
   UseRedirectLoggedOutUser("/login");
@@ -18,9 +19,16 @@ export const Categorylist = () => {
   useEffect(() => {
     dispatch(getallCategory());
   }, [dispatch]);
-
-  console.log(categorys);
   
+  const handeleDeleteCategory = async (categoryid) => {
+    try {
+      await dispatch(deleteCategory(categoryid));
+      await dispatch(getallCategory());
+    } catch (error) {
+      toast.error("Failed to delete category");
+    }
+  }
+
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
@@ -76,10 +84,8 @@ export const Categorylist = () => {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">{category?.title}</td>
-              
-                <td className="px-6 py-4">{category?.createdAt}</td>  {/*ELBETA3 DH MESH RADY YEBAA KEDA <DateFormatter date={category?.createdAt} /> awel lama b import beyboz */}  
-
+                <td className="px-6 py-4 capitalize">{category?.title}</td>
+                <td className="px-6 py-4">{category?.createdAt}{/*ELBETA3 DH MESH RADY YEBAA KEDA <DateFormatter date={category?.createdAt} /> awel lama b import beyboz */}</td>  
                 <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
                   <NavLink to="#" type="button" className="font-medium text-indigo-500">
                     <TiEyeOutline size={25} />
@@ -87,7 +93,7 @@ export const Categorylist = () => {
                   <NavLink to={`/category/update/${category?._id}`} className="font-medium text-green">
                     <CiEdit size={25} />
                   </NavLink>
-                  <button className="font-medium text-red-500">
+                  <button className="font-medium text-red-500" onClick={() => handeleDeleteCategory(category?._id)}>
                     <MdOutlineDeleteOutline size={25} />
                   </button>
                 </td>
