@@ -4,19 +4,10 @@ import { NavLink } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProductOfUser } from "../../../redux/features/productSlice";
 import { Table } from "../../../components/common/Hero/Table";
 
 
 export const ProductList = () => {
-  UseRedirectLoggedOutUser("/");
-  const dispatch=useDispatch();
-  const {userproducts} =useSelector((state) => state.product);
-
-  useEffect(() => {
-    dispatch(getAllProductOfUser());
-  },[dispatch]);
-
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
@@ -32,7 +23,6 @@ export const ProductList = () => {
           </NavLink>
         </div>
         <hr className="my-5" />
-        <Table products={userproducts}/>
       </section>
     </>
   );

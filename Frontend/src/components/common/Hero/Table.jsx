@@ -3,7 +3,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-export const Table = ({products}) => {
+export const Table = () => {
   return (
     <>
       <div className="relative overflow-x-auto rounded-lg">

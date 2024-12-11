@@ -8,11 +8,6 @@ const createProduct = async (formData) => {
   return response.data;
 };
 
-const getAllProduct = async (formData) => {
-  const response = await axios.get(`${PRODUCT_URL}/admin`);
-  return response.data;
-};
-
 const productService = {
   createProduct,
 };
