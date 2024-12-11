@@ -9,6 +9,7 @@ import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUse
 import { useEffect } from "react";
 import { deleteCategory, getallCategory } from "../../../redux/features/categorySlice";
 import { toast } from "react-toastify";
+import DateFormatter from "../../../utils/DateFormatter";
 
 export const Categorylist = () => {
   UseRedirectLoggedOutUser("/login");
@@ -33,7 +34,7 @@ export const Categorylist = () => {
     <>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between">
-          <Title level={5} className=" font-normal">
+          <Title level={5} className="font-normal">
             Category Lists
           </Title>
           <NavLink to="/category/create">
@@ -48,56 +49,44 @@ export const Categorylist = () => {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-100">
               <tr>
-                <th scope="col" className="px-6 py-5">
-                  S.N
-                </th>
-                <th scope="col" className="px-20 py-5">
-                  User
-                </th>
-                <th scope="col" className="px-6 py-5">
-                  Title
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Date
-                </th>
-                <th scope="col" className="px-6 py-3 flex justify-end">
-                  Action
-                </th>
+                <th scope="col" className="px-6 py-5">S.N</th>
+                <th scope="col" className="px-20 py-5">User</th>
+                <th scope="col" className="px-6 py-5">Title</th>
+                <th scope="col" className="px-6 py-3">Date</th>
+                <th scope="col" className="px-6 py-3 flex justify-end">Action</th>
               </tr>
             </thead>
             <tbody>
               {categorys?.map((category, index) => (
-                
-              
-              <tr className="bg-white border-b hover:bg-gray-50" key={index}>
-                <td className="px-6 py-4">{index + 1}</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center px-6 text-gray-900 whitespace-nowrap">
-                    <div>
+                <tr className="bg-white border-b hover:bg-gray-50" key={index}>
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center px-6 text-gray-900 whitespace-nowrap">
                       <ProfileCard>
                         <img src={category?.user?.photo} alt="" />
                       </ProfileCard>
+                      <div className="pl-3">
+                        <div className="text-base font-semibold capitalize"> {category?.user?.name}</div>
+                        <div className="font-normal text-gray-500"> {category?.user?.email}</div>
+                      </div>
                     </div>
-                    <div className="pl-3">
-                      <div className="text-base font-semibold capitalize"> {category?.user?.name}</div>
-                      <div className="font-normal text-gray-500"> {category?.user?.email}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 capitalize">{category?.title}</td>
-                <td className="px-6 py-4">{category?.createdAt}{/*ELBETA3 DH MESH RADY YEBAA KEDA <DateFormatter date={category?.createdAt} /> awel lama b import beyboz */}</td>  
-                <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
-                  <NavLink to="#" type="button" className="font-medium text-indigo-500">
-                    <TiEyeOutline size={25} />
-                  </NavLink>
-                  <NavLink to={`/category/update/${category?._id}`} className="font-medium text-green">
-                    <CiEdit size={25} />
-                  </NavLink>
-                  <button className="font-medium text-red-500" onClick={() => handeleDeleteCategory(category?._id)}>
-                    <MdOutlineDeleteOutline size={25} />
-                  </button>
-                </td>
-              </tr>
+                  </td>
+                  <td className="px-6 py-4 capitalize">{category?.title}</td>
+                  <td className="px-6 py-4">
+                    <DateFormatter date={category?.createdAt} />
+                  </td>  
+                  <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
+                    <NavLink to="#" type="button" className="font-medium text-indigo-500">
+                      <TiEyeOutline size={25} />
+                    </NavLink>
+                    <NavLink to={`/category/update/${category?._id}`} className="font-medium text-green">
+                      <CiEdit size={25} />
+                    </NavLink>
+                    <button className="font-medium text-red-500" onClick={() => handeleDeleteCategory(category?._id)}>
+                      <MdOutlineDeleteOutline size={25} />
+                    </button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

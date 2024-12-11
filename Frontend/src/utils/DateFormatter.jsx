@@ -1,25 +1,12 @@
 import React from "react";
 import Moment from "react-moment";
+import 'moment/locale/en-gb'; // Import locale if needed
+import moment from 'moment';
 
-//AAAAA33333333333333333 dh mesh rady yeshtaghal awel lama beyt3melo import fe Categorylist.jsx el code mesh beyerda yeshtaghalll
-
-export const DateFormatter = ({ date }) => {
+const DateFormatter = ({ date }) => {
   return (
-    <>
-      <Moment format="D MMM YYYY" withTitle>
-        {date}
-      </Moment>
-    </>
+    <Moment format="YYYY-MM-DD HH:mm:ss" locale="en-gb">{moment(date).format()}</Moment>
   );
 };
 
-/* import React from "react";
-
-export const DateFormatter = ({ date }) => {
-  const apiDateString = date;
-  const dateObject = new Date(apiDateString);
-  const readableDate = dateObject.toLocaleString();
-
-  return <>{readableDate}</>;
-};
- */
+export default DateFormatter;
