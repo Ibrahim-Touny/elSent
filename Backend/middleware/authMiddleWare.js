@@ -24,8 +24,6 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 });
 
 const isAdmin = (req, res, next) => {
-  console.log('isAdmin middleware executed');
-  console.log('req.user:', req.user);
   
   if (req.user && req.user.role === "admin") {
     next();

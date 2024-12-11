@@ -30,8 +30,6 @@ export const UserList = () => {
     return <p>No users available</p>;
   }
 
-  console.log(users); // To verify the users array content
-
   return (
     <section className="shadow-s1 p-8 rounded-lg">
       <div className="flex justify-between">

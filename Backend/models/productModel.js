@@ -31,7 +31,7 @@ const productSchema = mongoose.Schema({
   },
   startingBid: {
     type: Number,
-    required: [true, "Please add a starting bid amount"], // Represents the initial bid value
+    //required: [true, "Please add a starting bid amount"], // Represents the initial bid value
   },
   price: {
     type: Number, // Tracks the current highest bid

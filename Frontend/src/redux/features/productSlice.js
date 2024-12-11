@@ -25,17 +25,21 @@ export const createProduct = createAsyncThunk("product/create", async (formData,
 const productSlice=createSlice({
     name:"product",
     initialState,
-    reeducers:{},
+    reducers :{},
     extraReducers: (builder) => {
         builder
         .addCase(createProduct.pending, (state) => {
             state.isLoading = true;
-        })
+        })  
         .addCase(createProduct.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
-            state.products.push(action.payload);
+             // Check if action.payload has success property
+             if (action.payload.success) {
+                state.products.push(action.payload.data); // Assuming payload contains a `data` object
+            }
+            
             toast.success("Product has been Created");
         })
         .addCase(createProduct.rejected, (state, action) => {

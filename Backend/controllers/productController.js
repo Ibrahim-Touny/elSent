@@ -13,7 +13,7 @@ const createProduct = asyncHandler(async(req,res) => {
         height,
         lengthpic,
         width,
-        materialused,
+        materialUsed,
         weight,} = req.body;
 
         const userId = req.user.id;
@@ -32,7 +32,7 @@ const createProduct = asyncHandler(async(req,res) => {
             suffix++;
           }
         
-          if (!title || !description || !startingBid) {
+          if (!title || !description /*|| !startingBid*/) {
             res.status(400);
             throw new Error("Please fill in all fields");
           }
@@ -71,7 +71,7 @@ const createProduct = asyncHandler(async(req,res) => {
             height,
             lengthpic,
             width,
-            materialused,
+            materialUsed,
             weight,
             image:fileData,
           });

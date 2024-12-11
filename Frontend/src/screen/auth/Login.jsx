@@ -26,7 +26,7 @@ export const Login = () => {
       setFormData({...formData,[name]:value});
     }
 
-`    const handleLogin = (e)=> {
+    const handleLogin = (e)=> {
       e.preventDefault();
 
       if(!email || !password) {
@@ -34,7 +34,7 @@ export const Login = () => {
       }
 
       dispatch(login({email, password}));
-    };`
+    };
 
     useEffect(() => {
       if (isLoggedIn) {

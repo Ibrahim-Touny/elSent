@@ -14,9 +14,7 @@ const getallCategory = async () => {
 };
 
 const updateCategory = async (id, formData) => {
-  console.log('updating category:', id, formData);
   const response = await axios.put(`${CATEGORY_URL}/${id}`, formData);
-  console.log('response:', response);
   return response.data;
 };
 
