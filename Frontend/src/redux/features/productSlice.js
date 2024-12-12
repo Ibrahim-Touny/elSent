@@ -13,9 +13,9 @@ const initialState ={
     message:"",
 };
 
-export const createProduct = createAsyncThunk("product/create", async (_, thunkAPI) => {
+export const createProduct = createAsyncThunk("product/create", async (formData, thunkAPI) => {
     try {
-        return await productService.createProduct();
+        return await productService.createProduct(formData);
     } catch (error) {
             const errorMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.tostring() || error;
             return thunkAPI.rejectWithValue(errorMessage);

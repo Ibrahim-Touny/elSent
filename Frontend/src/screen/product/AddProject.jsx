@@ -26,7 +26,8 @@ export const AddProduct = () => {
   const [productImage, setProductImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
-  const { title, description, price, height, lengthPic, width, materialUsed, weight, category } = product;
+  const {description, price, height, lengthPic, width, materialUsed, weight, category } = product;
+  const [title,setTitle]=useState("")
   const { isSuccess } = useSelector(state => state.product);
 
   const handleInputChange = (e) => {
@@ -74,7 +75,7 @@ export const AddProduct = () => {
           <Caption className="mb-2">Title *</Caption>
           <input 
             type="text" 
-            value={title} 
+            value={product?.title} 
             onChange={handleInputChange} 
             name="title" 
             className={`${commonClassNameOfInput}`} 
