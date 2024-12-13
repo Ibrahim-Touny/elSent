@@ -5,9 +5,23 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { UseRedirectLoggedOutUser } from "../../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from "../../../components/common/Hero/Table";
+import { deleteProduct, getAllProduct } from "../../../redux/features/productSlice";
 
 
 export const ProductList = () => {
+  UseRedirectLoggedOutUser("/");
+  const dispatch=useDispatch();
+  const {userproducts}=useSelector((state) => state.product);
+
+  useEffect(() => {
+    dispatch(getAllProduct());
+  }, [dispatch]);
+
+  const handleDeleteProduct= async(id) => {
+    await dispatch(deleteProduct(id));
+    await dispatch(getAllProduct());
+  };
+
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
@@ -23,6 +37,7 @@ export const ProductList = () => {
           </NavLink>
         </div>
         <hr className="my-5" />
+        <Table products={userproducts} handleDeleteProduct={handleDeleteProduct}/>
       </section>
     </>
   );

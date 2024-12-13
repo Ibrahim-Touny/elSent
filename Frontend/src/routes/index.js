@@ -38,3 +38,4 @@ export { AddProduct } from "../screen/product/AddProject";
 export { ProductsDetailsPage } from "../screen/product/ProductsDetailsPage";
 export { ProductList } from "../screen/product/productlist/ProductList";
 export { ProductEdit } from "../screen/product/ProductEdit";
+

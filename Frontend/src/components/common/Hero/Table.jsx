@@ -3,7 +3,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-export const Table = () => {
+export const Table = ({products,isAdmin,handleDeleteProduct}) => {
   return (
     <>
       <div className="relative overflow-x-auto rounded-lg">
@@ -50,7 +50,7 @@ export const Table = () => {
                 <NavLink to="/update-product" type="button" className="font-medium text-green">
                   <CiEdit size={25} />
                 </NavLink>
-                <button className="font-medium text-red-500">
+                <button className="font-medium text-red-500" onClick={handleDeleteProduct}>
                   <MdOutlineDeleteOutline size={25} />
                 </button>
               </td>
