@@ -4,7 +4,7 @@ export const Home =() => {
     return ( <>
         <Hero/>
         <CategorySlider/>
-        <ProductList/>
+        {/*<ProductList/>*/}
         <Process/>
         <Trust/>
         <TopCollection/>

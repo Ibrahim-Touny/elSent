@@ -38,4 +38,6 @@ export { AddProduct } from "../screen/product/AddProject";
 export { ProductsDetailsPage } from "../screen/product/ProductsDetailsPage";
 export { ProductList } from "../screen/product/productlist/ProductList";
 export { ProductEdit } from "../screen/product/ProductEdit";
+export { AdminProductList } from "../components/admin/product/AdminProductList";
+export { UpdateProductByAdmin } from "../components/admin/product/UpdateProductByAdmin";
 

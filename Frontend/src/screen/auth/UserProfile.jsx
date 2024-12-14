@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { User2 } from "../hero/Hero";
+import { User1 } from "../hero/Hero";
 import { Caption, Title, commonClassNameOfInput, PrimaryButton } from "../../components/common/Design";
 import { UseRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,7 @@ export const UserProfile = () => {
     <>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="profile flex items-center gap-8">
-          <img src={User2} alt="" className="w-24 h-24 rounded-full object-cover" />
+          <img src={User1} alt="" className="w-24 h-24 rounded-full object-cover" />
           <div>
             <Title level={5} className="capitalize">
               {user?.name || "Default Name"}
