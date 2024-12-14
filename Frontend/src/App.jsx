@@ -16,6 +16,8 @@ import {
   CreateCategory,
   UpdateCategory,
   Categorylist,
+  UpdateProductByAdmin,
+  AdminProductList,
 } from "./routes/index.js";
 
 import { ToastContainer } from 'react-toastify';
@@ -45,11 +47,13 @@ function App() {
         <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
 
         {/* Private Routes */}
-        <Route path="/add" element={<PrivateRoute><Layout><DashboardLayout>   <AddProduct/>   </DashboardLayout></Layout></PrivateRoute>} />
-        <Route path="/product" element={<PrivateRoute><Layout><DashboardLayout>   <ProductList />   </DashboardLayout></Layout></PrivateRoute>}/>
-
         <Route path="/profile" element={<PrivateRoute><Layout><DashboardLayout>   <UserProfile/>   </DashboardLayout></Layout></PrivateRoute>} />
         <Route path="/userlist" element={<PrivateRoute><Layout><DashboardLayout>   <UserList/>   </DashboardLayout></Layout></PrivateRoute>} />
+
+        <Route path="/add" element={<PrivateRoute><Layout><DashboardLayout>   <AddProduct/>   </DashboardLayout></Layout></PrivateRoute>} />
+        <Route path="/product" element={<PrivateRoute><Layout><DashboardLayout>   <ProductList />   </DashboardLayout></Layout></PrivateRoute>}/>
+        <Route path="/product/admin" element={<PrivateRoute><Layout><DashboardLayout>   <AdminProductList />   </DashboardLayout></Layout></PrivateRoute>}/>
+        <Route path="/product/admin/update/:id" element={<PrivateRoute><Layout><DashboardLayout>   <UpdateProductByAdmin />   </DashboardLayout></Layout></PrivateRoute>}/>
 
         <Route path="/category" element={<PrivateRoute><Layout><DashboardLayout>   <Categorylist/>   </DashboardLayout></Layout></PrivateRoute>} />
         <Route path="/category/create" element={<PrivateRoute><Layout><DashboardLayout>   <CreateCategory/>   </DashboardLayout></Layout></PrivateRoute>} />
